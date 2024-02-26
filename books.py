@@ -22,7 +22,7 @@ async def first_api():
 # async def read_all_books(dynamic_param: str):
 #     return {'dynamic_param': dynamic_param}
 
-# %20代表space
+# %20代表space, casefold()將字串轉成小寫
 @app.get("/books/{book_title}")
 async def read_book(book_title: str):
     for book in BOOKS:
