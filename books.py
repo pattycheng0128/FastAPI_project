@@ -38,6 +38,7 @@ async def read_category_by_query(category: str):
             books_to_return.append(book)
     return books_to_return
 
+# query parameter
 @app.get("/books/{book_author}/")
 async def read_category_by_query(book_author: str, category: str):
     books_to_return = []
