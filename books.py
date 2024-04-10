@@ -68,5 +68,7 @@ async def delete_book(book_title: str):
         if BOOKS[i].get('title').casefold() == book_title.casefold():
             BOOKS.pop(i)
             break
-# How to run: uvicorn books:app --reload
+# How to run: uvicorn books:app --reload --port 8500
+#uvicorn src.books:app --reload --port 8500
+
 
