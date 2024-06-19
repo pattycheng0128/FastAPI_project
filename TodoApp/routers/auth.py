@@ -19,7 +19,7 @@ SECRET_KEY = "135272ed4e8f74de1930c886e57f5106a1cac5a60965b02fe785d4bd01d9cbd5"
 ALGORITHM = "HS256"
 
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_bearer = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_bearer = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 def get_db():
     db = SessionLocal()
@@ -62,10 +62,10 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_bearer)]):
         username: str = payload.get("sub")
         user_id: int = payload.get("id")
         if username is None or user_id is None:
-            raise  HTTPException(status_code=401, detail="Could not validate credentials")
+            raise  HTTPException(status_code=401, detail="Could not validate credential")
         return {'username': username, 'id': user_id}
     except JWTError:
-        raise HTTPException(status_code=401, detail="Could not validate credentials")
+        raise HTTPException(status_code=401, detail="Could not validate credential")
 
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(db: db_dependency, create_user_request: CreateUserRequest):
