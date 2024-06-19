@@ -62,8 +62,3 @@ async def delete_todo(db: db_dependency, todo_id: int = Path(gt=0)):
         raise HTTPException(status_code=404, detail="Todo not found")
     db.query(Todos).filter(Todos.id == todo_id).delete()
     db.commit()
-
-
-# create database command: uvicorn main:app --reload
-# pip3 install sqlalchemy
-# sqlite3 todo.db

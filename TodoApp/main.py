@@ -10,3 +10,7 @@ models.Base.metadata.create_all(bind=engine)
 app.include_router(auth.router)
 app.include_router(todos.router)
 
+# create database command: uvicorn main:app --reload
+# pip3 install sqlalchemy
+# sqlite3 todo.db 進入db
+
